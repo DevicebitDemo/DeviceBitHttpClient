@@ -55,10 +55,10 @@ int *dest, int dest_size);
 #include <Ethernet.h>
 
 
-#define USERKEY          "a377c51c9c074c9791ec9ce1c6f69990" // replace your key here
-#define LW_GATEWAY       "02"
+#define DB_USERKEY          "455314466a4641259352d086cfcefb89" // replace your key here
+#define DB_GATEWAY       "02"
 
-LeWeiClient *lwc;
+DeviceBitHttpClient *dbc;
 
 
 unsigned long lastConnectionTime = 0;          // last time you connected to the server, in milliseconds
@@ -83,7 +83,7 @@ void setup() {
   //delay(10000);               
   delay(3000);
 
-  lwc = new LeWeiClient(USERKEY, LW_GATEWAY);
+   dbc = new DeviceBitHttpClient(DB_USERKEY, DB_GATEWAY);
 
   starttime = millis();
 }
@@ -220,14 +220,14 @@ void loop() {
 
  
     // 4 Parameter: watt / kwh / Amp / Voltage / Pf
-    lwc->append("PC", Kwh);
-    lwc->append("P", Watt);
-    lwc->append("I", Amp); 
-    lwc->append("U", Voltage); 
-    lwc->append("PF", Pf); 
+    dbc->append("PC", Kwh);
+    dbc->append("P", Watt);
+    dbc->append("I", Amp); 
+    dbc->append("U", Voltage); 
+    dbc->append("PF", Pf); 
     //      lwc->append("06", Cabon); 
     Serial.println("lwc->append completed");
-    lwc->send();   
+    dbc->send();   
     Serial.println("lwc->send");
 
 //  Serial.print("Before end of for/while loop, iii="); 
@@ -645,4 +645,3 @@ int reg_count, int *data)
 
   return (ret);
 }
-
