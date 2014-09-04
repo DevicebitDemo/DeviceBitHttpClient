@@ -51,11 +51,9 @@ void loop() {
     temp_f = sht1x.readTemperatureF();
     humidity = sht1x.readHumidity();
     //t1,t2.. must using the same name setting on web server.
-    dbc->append("temp", temp_c);
-    dbc->append("hum", humidity);
     //Serial.print("*** data send ***");
-    dbc->send();
-    //Grammar changed by Wei&Anonymous ;)
+    dbc->appendSensorValue("temp", temp_c);
+    dbc->sendSensorValue("hum", humidity);
     Serial.println("*** send completed ***");
  
    delay(POST_INTERVAL);
