@@ -54,6 +54,7 @@ int *dest, int dest_size);
 #include <SPI.h>
 #include <Ethernet.h>
 
+#include <EEPROM.h>
 
 #define DB_USERKEY          "455314466a4641259352d086cfcefb89" // replace your key here
 #define DB_GATEWAY       "02"
@@ -220,14 +221,14 @@ void loop() {
 
  
     // 4 Parameter: watt / kwh / Amp / Voltage / Pf
-    dbc->append("PC", Kwh);
-    dbc->append("P", Watt);
-    dbc->append("I", Amp); 
-    dbc->append("U", Voltage); 
-    dbc->append("PF", Pf); 
+    dbc->appendSensorValue("PC", Kwh);
+    dbc->appendSensorValue("P", Watt);
+    dbc->appendSensorValue("I", Amp); 
+    dbc->appendSensorValue("U", Voltage); 
+    dbc->sendSensorValue("PF", Pf); 
     //      lwc->append("06", Cabon); 
     Serial.println("lwc->append completed");
-    dbc->send();   
+    //dbc->send();   
     Serial.println("lwc->send");
 
 //  Serial.print("Before end of for/while loop, iii="); 

@@ -7,6 +7,7 @@
 #include <SPI.h>
 #include <Ethernet.h>
 #include <SHT1x.h>
+#include <EEPROM.h>
 
 // Specify data and clock connections and instantiate SHT1x object
 #define dataPin 4
